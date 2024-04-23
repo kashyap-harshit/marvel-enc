@@ -10,46 +10,60 @@ export class Card extends Component {
       detailsStyle: {}
     }
   }
+  forEachPhone = () => {
+    this.setState({
+      cardStyle: {
+        gridTemplateRows: "0.4fr 0.6fr",
+        gridTemplateColumns: "none"
+      },
+
+      thumbStyle: {
+        border: "none",
+        borderBottom: `2px solid ${this.props.red}`,
+        padding: "10px 0px"
+      },
+
+      detailsStyle: { height: "29rem" }
+
+    })
+  }
   colorChanger = () => {
     if (this.props.supe.biography.publisher.toLowerCase().includes("marvel")) {
+      this.props.providerChanger("marvel");
       document.documentElement.style.setProperty('--red', '#c60c29');
     } else if (this.props.supe.biography.publisher.toLowerCase().includes("dc")) {
+      this.props.providerChanger("dc");
       document.documentElement.style.setProperty('--red', '#0476F2');
     }
     else {
+      this.props.providerChanger("else");
       document.documentElement.style.setProperty('--red', 'grey');
 
     }
   }
   componentDidMount() {
     this.colorChanger()
-    if (this.props.isLaptop) {
-      console.log("this is a laptop");
-      this.setState({
-
-      })
-    } else if (this.props.isPhone) {
-      console.log("this is a phone");
-    } else if (this.props.isSmallPhone) {
-      this.setState({
-        cardStyle: {
-          gridTemplateRows: "0.4fr 0.6fr",
-          gridTemplateColumns: "none"
-        },
-
-        thumbStyle: {
-          border: "none",
-          borderBottom: `2px solid ${this.props.red}`,
-          padding: "10px 0px"
-        },
-
-        detailsStyle: {height: "490px"}
-
-      })
-      console.log("this is a very small phone");
-    } else if (this.props.isDesktop) {
+    if (this.props.isDesktop) {
       console.log("this is a desktop");
     }
+    else if (this.props.isLaptop) {
+      console.log("this is a laptop");
+      
+    }else if(this.props.isTablet){
+
+      this.forEachPhone()
+      this.setState({
+        detailsStyle: { height: "32rem" }
+      })
+    } 
+    else if (this.props.isPhone) {
+      this.forEachPhone()
+
+      console.log("this is a phone");
+    } else if (this.props.isSmallPhone) {
+      this.forEachPhone()
+      console.log("this is a very small phone");
+    }  
   }
 
   componentDidUpdate(preProp, preState, snapshot) {

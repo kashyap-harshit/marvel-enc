@@ -17,11 +17,14 @@ export class Search extends Component {
       supes: [],
       slug: "",
       loading: false,
-      mainCompStyle: {margin: "0px 300px"},
+      mainCompStyle: { margin: "0px 300px" },
       inputStyle: {},
       heroStyle: {}
-      
+
     }
+  }
+  buttonStyle = {
+    height: "33px"
   }
   slugChanger = (slug) => {
     this.setState({
@@ -56,24 +59,43 @@ export class Search extends Component {
       supes: parsedData,
       loading: false
     })
-    if(this.props.isLaptop){
-      // console.log("this is a laptop");
-      
-    }else if(this.props.isPhone){
-      // console.log("this is a phone");
-      this.setState({
-        inputStyle: {width: "210px"},
-        heroStyle: {width: "210px"}
-      })
-    }else if(this.props.isDesktop){
-      // console.log("this is a desktop");
+     if (this.props.isDesktop) {
+
     }
+    else if (this.props.isLaptop) {
+
+
+    } 
+    else if (this.props.isPhone) {
+
+      this.buttonStyle = {
+        height: "42px"
+      }
+      this.setState({
+        inputStyle: {
+          width: "230px",
+          height: "42px"
+        },
+        heroStyle: { width: "230px" }
+      })
+    } 
+    else if (this.props.isSmallPhone) {
+
+      this.buttonStyle = {
+        height: "33px"
+      }
+      this.setState({
+        inputStyle: { width: "210px" },
+        heroStyle: { width: "210px" }
+      })
+    } 
     
+
   }
   componentDidUpdate(preProp, preState, snapshot) {
     if (preState.query !== this.state.query) {
-      if (this.state.query.length > 2){
-      
+      if (this.state.query.length > 2) {
+
         this.setState({
           loading: true,
           filteredHeroes: this.state.supes.filter(e => { //no need to clear it before updating because it is not pushing instead it is equalling everytime the query changes
@@ -123,7 +145,7 @@ export class Search extends Component {
 
 
             </div>
-            <button style={{ height: "33px" }} onClick={(e) => {
+            <button style={this.buttonStyle}  onClick={(e) => {
               e.preventDefault()
 
             }} className='btn input-btn' >Search</button>
@@ -140,7 +162,7 @@ export class Search extends Component {
         </div>
 
         {this.state.slug.length > 0 ?
-          <Card red={this.props.red} isSmallPhone={this.props.isSmallPhone} isPhone={this.props.isPhone} isTablet={this.props.isTablet} isLaptop={this.props.isLaptop} isDesktop={this.props.isDesktop} loading={this.state.loading} supe={this.state.supes.filter((e) => {
+          <Card providerChanger={this.props.providerChanger} red={this.props.red} isSmallPhone={this.props.isSmallPhone} isPhone={this.props.isPhone} isTablet={this.props.isTablet} isLaptop={this.props.isLaptop} isDesktop={this.props.isDesktop} loading={this.state.loading} supe={this.state.supes.filter((e) => {
             return e.slug === this.state.slug
           })[0]} ></Card> : <CardDup red={this.props.red} isSmallPhone={this.props.isSmallPhone} isPhone={this.props.isPhone} isTablet={this.props.isTablet} isLaptop={this.props.isLaptop} isDesktop={this.props.isDesktop} loading={this.state.loading}></CardDup>}
       </>
