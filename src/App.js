@@ -43,9 +43,16 @@ export class App extends Component {
     })
   }
   componentDidMount = () => {
+    if(this.props.isDesktop){
+      this.setState({
+        mainCompStyle: {
+          margin: "8rem 20rem 2rem",
+          height: "45.8rem"
+        }
+      })
+    }
 
-
-     if (this.props.isLaptop) {
+    else if (this.props.isLaptop) {
       this.setState({
         mainCompStyle: { margin: "20px 300px 0px" }
       })

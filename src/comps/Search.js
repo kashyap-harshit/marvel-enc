@@ -59,7 +59,7 @@ export class Search extends Component {
       supes: parsedData,
       loading: false
     })
-     if (this.props.isDesktop) {
+    if (this.props.isDesktop) {
 
     }
     else if (this.props.isLaptop) {

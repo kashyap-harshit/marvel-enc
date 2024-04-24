@@ -24,7 +24,11 @@ export class Card extends Component {
   }
   componentDidMount() {
     if (this.props.isDesktop) {
-      console.log("this is a desktop");
+      this.setState({
+        cardStyle: {
+          height: "41.1rem"
+        }
+      })
     }
     else if (this.props.isLaptop) {
       console.log("this is a laptop");
