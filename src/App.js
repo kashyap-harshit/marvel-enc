@@ -21,8 +21,9 @@ let withMediaQuery = (WrappedComponent) => {
     const isPhone = useMediaQuery({ query: '(min-width: 400px)' });
     const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
     const isLaptop = useMediaQuery({ query: '(min-width: 1024px)' });
-    const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
-    return <WrappedComponent {...props} isSmallPhone={isSmallPhone} isPhone={isPhone} isTablet={isTablet} isLaptop={isLaptop} isDesktop={isDesktop}></WrappedComponent>
+    const isBigLaptop = useMediaQuery({ query: '(min-width: 1280px) ' });
+    const isDesktop = useMediaQuery({ query: '(min-width: 1920px)' });
+    return <WrappedComponent {...props} isBigLaptop={isBigLaptop} isSmallPhone={isSmallPhone} isPhone={isPhone} isTablet={isTablet} isLaptop={isLaptop} isDesktop={isDesktop}></WrappedComponent>
   }
 
 }
@@ -43,7 +44,7 @@ export class App extends Component {
     })
   }
   componentDidMount = () => {
-    if(this.props.isDesktop){
+    if (this.props.isDesktop) {
       this.setState({
         mainCompStyle: {
           margin: "8rem 20rem 2rem",
@@ -51,7 +52,16 @@ export class App extends Component {
         }
       })
     }
+    else if (this.props.isBigLaptop) {
+      console.log("big laptop")
+      this.setState({
+        mainCompStyle: {
+          margin: "5rem 18rem 2rem",
+          height: "28.1rem"
+        }
+      })
 
+    }
     else if (this.props.isLaptop) {
       this.setState({
         mainCompStyle: { margin: "20px 300px 0px" }
@@ -104,7 +114,7 @@ export class App extends Component {
                   } />
                 </Routes>
               </div>
-              <Footer isSmallPhone={this.props.isSmallPhone} isPhone={this.props.isPhone} isTablet={this.props.isTablet} isLaptop={this.props.isLaptop} isDesktop={this.props.isDesktop} />
+              <Footer isBigLaptop={this.props.isBigLaptop}  isSmallPhone={this.props.isSmallPhone} isPhone={this.props.isPhone} isTablet={this.props.isTablet} isLaptop={this.props.isLaptop} isDesktop={this.props.isDesktop} />
 
             </div>
 

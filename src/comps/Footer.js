@@ -12,6 +12,11 @@ export class Footer extends Component {
     if(this.props.isDesktop){
       
     }
+    else if(this.props.isBigLaptop){
+      this.footerStyle = {
+        
+      }
+    }
     else if(this.props.isLaptop){
       this.footerStyle = {
         position : "relative"
