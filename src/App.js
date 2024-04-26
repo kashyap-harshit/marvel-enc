@@ -52,21 +52,21 @@ export class App extends Component {
         }
       })
     }
-    else if (this.props.isBigLaptop) {
+    else if (this.props.isLaptop) {
       console.log("big laptop")
       this.setState({
         mainCompStyle: {
-          margin: "5rem 18rem 2rem",
+          margin: "2rem 18rem 2rem",
           height: "28.1rem"
         }
       })
 
     }
-    else if (this.props.isLaptop) {
-      this.setState({
-        mainCompStyle: { margin: "20px 300px 0px" }
-      })
-    }
+    // else if (this.props.isLaptop) {
+    //   this.setState({
+    //     mainCompStyle: { margin: "20px 300px 0px" }
+    //   })
+    // }
     else if (this.props.isTablet) {
       this.setState({
         mainCompStyle: {
@@ -81,7 +81,7 @@ export class App extends Component {
       this.setState({
         mainCompStyle: {
           margin: "60px 30px 3vh",
-          height: "110vh"
+          height: "63.2rem"
         },
 
 
@@ -91,7 +91,7 @@ export class App extends Component {
       this.setState({
         mainCompStyle: {
           margin: "60px 14px 4vh",
-          height: "110vh"
+          height: "64rem"
         },
 
 
